@@ -8,7 +8,6 @@ import android.text.Html
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
@@ -18,7 +17,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var remoteConfig : FirebaseRemoteConfig
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        FirebaseApp.initializeApp(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
