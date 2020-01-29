@@ -49,6 +49,8 @@ class MainActivity : AppCompatActivity() {
         //use cached remote data to set up ui, no UI changes till next clean launch after app is killed
         if (remoteConfig.getBoolean("image_config")) {
             imageView.setImageResource(R.drawable.kobe_2)
+        } else{
+            imageView.setImageResource(R.drawable.kobe_1)
         }
     }
 
