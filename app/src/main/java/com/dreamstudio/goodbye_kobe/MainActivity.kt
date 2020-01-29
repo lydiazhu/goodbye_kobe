@@ -15,20 +15,22 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
 class MainActivity : AppCompatActivity() {
 
     private lateinit var remoteConfig : FirebaseRemoteConfig
+    private lateinit var imageView: ImageView
+    private lateinit var textView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val image = findViewById<ImageView>(R.id.image)
-        val textView = findViewById<TextView>(R.id.link)
+        textView = findViewById(R.id.link)
+        imageView = findViewById(R.id.image)
         remoteConfig = FirebaseRemoteConfig.getInstance()
 
-        setupRemoteConfig(image)
-        setupHyperlink(textView)
+        setupRemoteConfig()
+        setupHyperlink()
     }
 
-    private fun setupRemoteConfig(image: ImageView) {
+    private fun setupRemoteConfig() {
         remoteConfig.setConfigSettingsAsync(
             FirebaseRemoteConfigSettings.Builder().setFetchTimeoutInSeconds(3600L).build()
         )
@@ -46,12 +48,11 @@ class MainActivity : AppCompatActivity() {
 
         //use cached remote data to set up ui, no UI changes till next clean launch after app is killed
         if (remoteConfig.getBoolean("image_config")) {
-            image.setImageResource(R.drawable.kobe_2)
+            imageView.setImageResource(R.drawable.kobe_2)
         }
     }
 
-    private fun setupHyperlink(view: View) {
-        val textView = view.findViewById<TextView>(R.id.link)
+    private fun setupHyperlink() {
         val text =
             "<a href='http://kvbff.org/about/'> The Kobe and Vanessa Bryant Family Foundation </a>"
         textView.text = Html.fromHtml(text)
